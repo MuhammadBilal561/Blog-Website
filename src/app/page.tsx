@@ -16,7 +16,7 @@ export default function Home() {
 <div className='absolute -z-10 w-full '>
 
 <Image
- className=' bg-fixed bg-cover h-screen flex flex-shrink-0  '
+ className=' bg-fixed bg-cover h-screen flex flex-shrink-0 w-screen  '
  src={bg}
   alt='bg'
   />

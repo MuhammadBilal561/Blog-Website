@@ -9,6 +9,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import Header from "@/components/Header";
+import Footer from "@/components/Fotter";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,19 +19,17 @@ import { toast } from "@/components/ui/use-toast";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Header from "@/components/Header";
-import Fotter from "@/components/Fotter";
 
 const FormSchema = z.object({
-  fullName: z.string().min(10, {
-    message: "Fullname Required",
-  }),
+
   email: z.string().email("Email required"),
-  subject: z.string().min(4, {
-    message: "Subject is Required",
-  }),
-  message: z.string().min(4, {
-    message: "Message is Required",
+userName: z.string().min(6 , {
+    message: "Minimum 6 characters required"
+})
+  ,
+
+  password: z.string().min(6, {
+    message: "password must me at least 6 characters",
   }),
 });
 
@@ -37,10 +37,9 @@ function ContactUs() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      fullName: "",
       email: "",
-      subject: "",
-      message: "",
+      userName:"",
+      password: "",
     },
   });
 
@@ -58,29 +57,15 @@ function ContactUs() {
   }
 
   return (
-    <>
-    <Header/>
-    <div className="flex items-center justify-center p-12">
-      <div className="mx-auto w-full max-w-[550px]">
+    <div>
+      <Header/>
+    <div className="flex items-center justify-center mt-28">
+  <div className="bg-white w-fit relative border-orange-500 border border-8">
+        <h3 className="flex justify-center font-extrabold text-2xl mt-7">Sign Up</h3>
+        <div className="flex items-center justify-center px-4 py-3 mb-5">
+      <div className="mx-auto w-80 max-w-[550px] ">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Full Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Full Name"
-                      {...field}
-                      className="rounded-sm"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="email"
@@ -94,42 +79,46 @@ function ContactUs() {
                 </FormItem>
               )}
             />
-            <FormField
+
+<FormField
               control={form.control}
-              name="subject"
+              name="userName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Subject</FormLabel>
+                  <FormLabel>UserName</FormLabel>
                   <FormControl>
-                    <Input placeholder="Subject" {...field} />
+                    <Input placeholder="UserName" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <FormField
               control={form.control}
-              name="message"
+              name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Enter your message" {...field} />
+                    <Input placeholder="Password" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+     
             <Button type="submit">Submit</Button>
           </form>
         </Form>
       </div>
     </div>
-<div className="flex justify-end mr-6">
-     
-<Fotter />
-
-    </div>    </>
+    </div>
+    </div>
+   <div className="flex justify-end mr-4 mb-0">
+   <Footer  />
+   </div>
+    </div>
   );
 }
 

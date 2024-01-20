@@ -13,7 +13,7 @@ const Header = () => {
         <div className='flex p-2 justify-end gap-x-10 font-bold text-xl'>
 <Link className='font-extrabold text-xl'  href={'/ '}>Home</Link>
 <Link className='font-extrabold  text-xl '  href={'/blogs'}>Blog</Link>
-<Link  className='font-extrabold text-xl ' href={'/contact-us'}>Contact US</Link>
+<Link  className='font-extrabold text-xl ' href={'/signupForm'}>Sign Up</Link>
 </div>
 
     </div>

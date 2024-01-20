@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Fotter from '@/components/Fotter'
 import Image from 'next/image'
 import bg from '@/assets/bg.avif'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,7 +31,9 @@ export default function RootLayout({
 <div>
 
 
+
 {children}
+<Toaster />
 </div>
        
        
